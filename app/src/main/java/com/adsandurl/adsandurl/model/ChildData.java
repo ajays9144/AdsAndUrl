@@ -1,14 +1,19 @@
 package com.adsandurl.adsandurl.model;
 
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class ChildData {
+    @PrimaryKey(autoGenerate = true)
+    private long autoID;
     @SerializedName("approved_at_utc")
     @Expose
-    private Object approvedAtUtc;
+    private String approvedAtUtc;
     @SerializedName("subreddit")
     @Expose
     private String subreddit;
@@ -23,7 +28,7 @@ public class ChildData {
     private Boolean saved;
     @SerializedName("mod_reason_title")
     @Expose
-    private Object modReasonTitle;
+    private String modReasonTitle;
     @SerializedName("gilded")
     @Expose
     private Integer gilded;
@@ -33,9 +38,6 @@ public class ChildData {
     @SerializedName("title")
     @Expose
     private String title;
-    @SerializedName("link_flair_richtext")
-    @Expose
-    private List<Object> linkFlairRichtext = null;
     @SerializedName("subreddit_name_prefixed")
     @Expose
     private String subredditNamePrefixed;
@@ -47,7 +49,7 @@ public class ChildData {
     private Integer pwls;
     @SerializedName("link_flair_css_class")
     @Expose
-    private Object linkFlairCssClass;
+    private String linkFlairCssClass;
     @SerializedName("downs")
     @Expose
     private Integer downs;
@@ -68,7 +70,7 @@ public class ChildData {
     private String linkFlairTextColor;
     @SerializedName("author_flair_background_color")
     @Expose
-    private Object authorFlairBackgroundColor;
+    private String authorFlairBackgroundColor;
     @SerializedName("subreddit_type")
     @Expose
     private String subredditType;
@@ -78,24 +80,15 @@ public class ChildData {
     @SerializedName("total_awards_received")
     @Expose
     private Integer totalAwardsReceived;
-    @SerializedName("media_embed")
-    @Expose
-    private MediaEmbed mediaEmbed;
     @SerializedName("thumbnail_width")
     @Expose
     private Integer thumbnailWidth;
     @SerializedName("author_flair_template_id")
     @Expose
-    private Object authorFlairTemplateId;
+    private String authorFlairTemplateId;
     @SerializedName("is_original_content")
     @Expose
     private Boolean isOriginalContent;
-    @SerializedName("user_reports")
-    @Expose
-    private List<Object> userReports = null;
-    @SerializedName("secure_media")
-    @Expose
-    private Object secureMedia;
     @SerializedName("is_reddit_media_domain")
     @Expose
     private Boolean isRedditMediaDomain;
@@ -104,13 +97,10 @@ public class ChildData {
     private Boolean isMeta;
     @SerializedName("category")
     @Expose
-    private Object category;
-    @SerializedName("secure_media_embed")
-    @Expose
-    private SecureMediaEmbed secureMediaEmbed;
+    private String category;
     @SerializedName("link_flair_text")
     @Expose
-    private Object linkFlairText;
+    private String linkFlairText;
     @SerializedName("can_mod_post")
     @Expose
     private Boolean canModPost;
@@ -119,7 +109,7 @@ public class ChildData {
     private Integer score;
     @SerializedName("approved_by")
     @Expose
-    private Object approvedBy;
+    private String approvedBy;
     @SerializedName("author_premium")
     @Expose
     private Boolean authorPremium;
@@ -131,22 +121,16 @@ public class ChildData {
     private Boolean edited;
     @SerializedName("author_flair_css_class")
     @Expose
-    private Object authorFlairCssClass;
-    @SerializedName("author_flair_richtext")
-    @Expose
-    private List<Object> authorFlairRichtext = null;
-    @SerializedName("gildings")
-    @Expose
-    private Gildings gildings;
+    private String authorFlairCssClass;
     @SerializedName("content_categories")
     @Expose
-    private Object contentCategories;
+    private String contentCategories;
     @SerializedName("is_self")
     @Expose
     private Boolean isSelf;
     @SerializedName("mod_note")
     @Expose
-    private Object modNote;
+    private String modNote;
     @SerializedName("created")
     @Expose
     private Integer created;
@@ -158,10 +142,10 @@ public class ChildData {
     private Integer wls;
     @SerializedName("removed_by_category")
     @Expose
-    private Object removedByCategory;
+    private String removedByCategory;
     @SerializedName("banned_by")
     @Expose
-    private Object bannedBy;
+    private String bannedBy;
     @SerializedName("author_flair_type")
     @Expose
     private String authorFlairType;
@@ -173,19 +157,19 @@ public class ChildData {
     private Boolean allowLiveComments;
     @SerializedName("selftext_html")
     @Expose
-    private Object selftextHtml;
+    private String selftextHtml;
     @SerializedName("likes")
     @Expose
-    private Object likes;
+    private String likes;
     @SerializedName("suggested_sort")
     @Expose
-    private Object suggestedSort;
+    private String suggestedSort;
     @SerializedName("banned_at_utc")
     @Expose
-    private Object bannedAtUtc;
+    private String bannedAtUtc;
     @SerializedName("view_count")
     @Expose
-    private Object viewCount;
+    private String viewCount;
     @SerializedName("archived")
     @Expose
     private Boolean archived;
@@ -203,10 +187,8 @@ public class ChildData {
     private Boolean over18;
     @SerializedName("all_awardings")
     @Expose
+    @TypeConverters(AllAwardingTypeConverter.class)
     private List<AllAwarding> allAwardings = null;
-    @SerializedName("awarders")
-    @Expose
-    private List<Object> awarders = null;
     @SerializedName("media_only")
     @Expose
     private Boolean mediaOnly;
@@ -221,46 +203,43 @@ public class ChildData {
     private Boolean locked;
     @SerializedName("author_flair_text")
     @Expose
-    private Object authorFlairText;
+    private String authorFlairText;
     @SerializedName("visited")
     @Expose
     private Boolean visited;
     @SerializedName("removed_by")
     @Expose
-    private Object removedBy;
+    private String removedBy;
     @SerializedName("num_reports")
     @Expose
-    private Object numReports;
+    private String numReports;
     @SerializedName("distinguished")
     @Expose
-    private Object distinguished;
+    private String distinguished;
     @SerializedName("subreddit_id")
     @Expose
     private String subredditId;
     @SerializedName("mod_reason_by")
     @Expose
-    private Object modReasonBy;
+    private String modReasonBy;
     @SerializedName("removal_reason")
     @Expose
-    private Object removalReason;
+    private String removalReason;
     @SerializedName("link_flair_background_color")
     @Expose
     private String linkFlairBackgroundColor;
-    @SerializedName("id")
-    @Expose
-    private String id;
     @SerializedName("is_robot_indexable")
     @Expose
     private Boolean isRobotIndexable;
     @SerializedName("report_reasons")
     @Expose
-    private Object reportReasons;
+    private String reportReasons;
     @SerializedName("author")
     @Expose
     private String author;
     @SerializedName("discussion_type")
     @Expose
-    private Object discussionType;
+    private String discussionType;
     @SerializedName("num_comments")
     @Expose
     private Integer numComments;
@@ -273,15 +252,12 @@ public class ChildData {
     @SerializedName("contest_mode")
     @Expose
     private Boolean contestMode;
-    @SerializedName("mod_reports")
-    @Expose
-    private List<Object> modReports = null;
     @SerializedName("author_patreon_flair")
     @Expose
     private Boolean authorPatreonFlair;
     @SerializedName("author_flair_text_color")
     @Expose
-    private Object authorFlairTextColor;
+    private String authorFlairTextColor;
     @SerializedName("permalink")
     @Expose
     private String permalink;
@@ -303,24 +279,18 @@ public class ChildData {
     @SerializedName("num_crossposts")
     @Expose
     private Integer numCrossposts;
-    @SerializedName("media")
-    @Expose
-    private Object media;
     @SerializedName("is_video")
     @Expose
     private Boolean isVideo;
     @SerializedName("post_hint")
     @Expose
     private String postHint;
-    @SerializedName("preview")
-    @Expose
-    private Preview preview;
 
-    public Object getApprovedAtUtc() {
+    public String getApprovedAtUtc() {
         return approvedAtUtc;
     }
 
-    public void setApprovedAtUtc(Object approvedAtUtc) {
+    public void setApprovedAtUtc(String approvedAtUtc) {
         this.approvedAtUtc = approvedAtUtc;
     }
 
@@ -356,11 +326,11 @@ public class ChildData {
         this.saved = saved;
     }
 
-    public Object getModReasonTitle() {
+    public String getModReasonTitle() {
         return modReasonTitle;
     }
 
-    public void setModReasonTitle(Object modReasonTitle) {
+    public void setModReasonTitle(String modReasonTitle) {
         this.modReasonTitle = modReasonTitle;
     }
 
@@ -388,14 +358,6 @@ public class ChildData {
         this.title = title;
     }
 
-    public List<Object> getLinkFlairRichtext() {
-        return linkFlairRichtext;
-    }
-
-    public void setLinkFlairRichtext(List<Object> linkFlairRichtext) {
-        this.linkFlairRichtext = linkFlairRichtext;
-    }
-
     public String getSubredditNamePrefixed() {
         return subredditNamePrefixed;
     }
@@ -420,11 +382,11 @@ public class ChildData {
         this.pwls = pwls;
     }
 
-    public Object getLinkFlairCssClass() {
+    public String getLinkFlairCssClass() {
         return linkFlairCssClass;
     }
 
-    public void setLinkFlairCssClass(Object linkFlairCssClass) {
+    public void setLinkFlairCssClass(String linkFlairCssClass) {
         this.linkFlairCssClass = linkFlairCssClass;
     }
 
@@ -476,11 +438,11 @@ public class ChildData {
         this.linkFlairTextColor = linkFlairTextColor;
     }
 
-    public Object getAuthorFlairBackgroundColor() {
+    public String getAuthorFlairBackgroundColor() {
         return authorFlairBackgroundColor;
     }
 
-    public void setAuthorFlairBackgroundColor(Object authorFlairBackgroundColor) {
+    public void setAuthorFlairBackgroundColor(String authorFlairBackgroundColor) {
         this.authorFlairBackgroundColor = authorFlairBackgroundColor;
     }
 
@@ -508,14 +470,6 @@ public class ChildData {
         this.totalAwardsReceived = totalAwardsReceived;
     }
 
-    public MediaEmbed getMediaEmbed() {
-        return mediaEmbed;
-    }
-
-    public void setMediaEmbed(MediaEmbed mediaEmbed) {
-        this.mediaEmbed = mediaEmbed;
-    }
-
     public Integer getThumbnailWidth() {
         return thumbnailWidth;
     }
@@ -524,11 +478,11 @@ public class ChildData {
         this.thumbnailWidth = thumbnailWidth;
     }
 
-    public Object getAuthorFlairTemplateId() {
+    public String getAuthorFlairTemplateId() {
         return authorFlairTemplateId;
     }
 
-    public void setAuthorFlairTemplateId(Object authorFlairTemplateId) {
+    public void setAuthorFlairTemplateId(String authorFlairTemplateId) {
         this.authorFlairTemplateId = authorFlairTemplateId;
     }
 
@@ -538,22 +492,6 @@ public class ChildData {
 
     public void setOriginalContent(Boolean originalContent) {
         isOriginalContent = originalContent;
-    }
-
-    public List<Object> getUserReports() {
-        return userReports;
-    }
-
-    public void setUserReports(List<Object> userReports) {
-        this.userReports = userReports;
-    }
-
-    public Object getSecureMedia() {
-        return secureMedia;
-    }
-
-    public void setSecureMedia(Object secureMedia) {
-        this.secureMedia = secureMedia;
     }
 
     public Boolean getRedditMediaDomain() {
@@ -572,27 +510,19 @@ public class ChildData {
         isMeta = meta;
     }
 
-    public Object getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Object category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
-    public SecureMediaEmbed getSecureMediaEmbed() {
-        return secureMediaEmbed;
-    }
-
-    public void setSecureMediaEmbed(SecureMediaEmbed secureMediaEmbed) {
-        this.secureMediaEmbed = secureMediaEmbed;
-    }
-
-    public Object getLinkFlairText() {
+    public String getLinkFlairText() {
         return linkFlairText;
     }
 
-    public void setLinkFlairText(Object linkFlairText) {
+    public void setLinkFlairText(String linkFlairText) {
         this.linkFlairText = linkFlairText;
     }
 
@@ -612,11 +542,11 @@ public class ChildData {
         this.score = score;
     }
 
-    public Object getApprovedBy() {
+    public String getApprovedBy() {
         return approvedBy;
     }
 
-    public void setApprovedBy(Object approvedBy) {
+    public void setApprovedBy(String approvedBy) {
         this.approvedBy = approvedBy;
     }
 
@@ -644,35 +574,19 @@ public class ChildData {
         this.edited = edited;
     }
 
-    public Object getAuthorFlairCssClass() {
+    public String getAuthorFlairCssClass() {
         return authorFlairCssClass;
     }
 
-    public void setAuthorFlairCssClass(Object authorFlairCssClass) {
+    public void setAuthorFlairCssClass(String authorFlairCssClass) {
         this.authorFlairCssClass = authorFlairCssClass;
     }
 
-    public List<Object> getAuthorFlairRichtext() {
-        return authorFlairRichtext;
-    }
-
-    public void setAuthorFlairRichtext(List<Object> authorFlairRichtext) {
-        this.authorFlairRichtext = authorFlairRichtext;
-    }
-
-    public Gildings getGildings() {
-        return gildings;
-    }
-
-    public void setGildings(Gildings gildings) {
-        this.gildings = gildings;
-    }
-
-    public Object getContentCategories() {
+    public String getContentCategories() {
         return contentCategories;
     }
 
-    public void setContentCategories(Object contentCategories) {
+    public void setContentCategories(String contentCategories) {
         this.contentCategories = contentCategories;
     }
 
@@ -684,11 +598,11 @@ public class ChildData {
         isSelf = self;
     }
 
-    public Object getModNote() {
+    public String getModNote() {
         return modNote;
     }
 
-    public void setModNote(Object modNote) {
+    public void setModNote(String modNote) {
         this.modNote = modNote;
     }
 
@@ -716,19 +630,19 @@ public class ChildData {
         this.wls = wls;
     }
 
-    public Object getRemovedByCategory() {
+    public String getRemovedByCategory() {
         return removedByCategory;
     }
 
-    public void setRemovedByCategory(Object removedByCategory) {
+    public void setRemovedByCategory(String removedByCategory) {
         this.removedByCategory = removedByCategory;
     }
 
-    public Object getBannedBy() {
+    public String getBannedBy() {
         return bannedBy;
     }
 
-    public void setBannedBy(Object bannedBy) {
+    public void setBannedBy(String bannedBy) {
         this.bannedBy = bannedBy;
     }
 
@@ -756,43 +670,43 @@ public class ChildData {
         this.allowLiveComments = allowLiveComments;
     }
 
-    public Object getSelftextHtml() {
+    public String getSelftextHtml() {
         return selftextHtml;
     }
 
-    public void setSelftextHtml(Object selftextHtml) {
+    public void setSelftextHtml(String selftextHtml) {
         this.selftextHtml = selftextHtml;
     }
 
-    public Object getLikes() {
+    public String getLikes() {
         return likes;
     }
 
-    public void setLikes(Object likes) {
+    public void setLikes(String likes) {
         this.likes = likes;
     }
 
-    public Object getSuggestedSort() {
+    public String getSuggestedSort() {
         return suggestedSort;
     }
 
-    public void setSuggestedSort(Object suggestedSort) {
+    public void setSuggestedSort(String suggestedSort) {
         this.suggestedSort = suggestedSort;
     }
 
-    public Object getBannedAtUtc() {
+    public String getBannedAtUtc() {
         return bannedAtUtc;
     }
 
-    public void setBannedAtUtc(Object bannedAtUtc) {
+    public void setBannedAtUtc(String bannedAtUtc) {
         this.bannedAtUtc = bannedAtUtc;
     }
 
-    public Object getViewCount() {
+    public String getViewCount() {
         return viewCount;
     }
 
-    public void setViewCount(Object viewCount) {
+    public void setViewCount(String viewCount) {
         this.viewCount = viewCount;
     }
 
@@ -844,14 +758,6 @@ public class ChildData {
         this.allAwardings = allAwardings;
     }
 
-    public List<Object> getAwarders() {
-        return awarders;
-    }
-
-    public void setAwarders(List<Object> awarders) {
-        this.awarders = awarders;
-    }
-
     public Boolean getMediaOnly() {
         return mediaOnly;
     }
@@ -884,11 +790,11 @@ public class ChildData {
         this.locked = locked;
     }
 
-    public Object getAuthorFlairText() {
+    public String getAuthorFlairText() {
         return authorFlairText;
     }
 
-    public void setAuthorFlairText(Object authorFlairText) {
+    public void setAuthorFlairText(String authorFlairText) {
         this.authorFlairText = authorFlairText;
     }
 
@@ -900,27 +806,27 @@ public class ChildData {
         this.visited = visited;
     }
 
-    public Object getRemovedBy() {
+    public String getRemovedBy() {
         return removedBy;
     }
 
-    public void setRemovedBy(Object removedBy) {
+    public void setRemovedBy(String removedBy) {
         this.removedBy = removedBy;
     }
 
-    public Object getNumReports() {
+    public String getNumReports() {
         return numReports;
     }
 
-    public void setNumReports(Object numReports) {
+    public void setNumReports(String numReports) {
         this.numReports = numReports;
     }
 
-    public Object getDistinguished() {
+    public String getDistinguished() {
         return distinguished;
     }
 
-    public void setDistinguished(Object distinguished) {
+    public void setDistinguished(String distinguished) {
         this.distinguished = distinguished;
     }
 
@@ -932,19 +838,19 @@ public class ChildData {
         this.subredditId = subredditId;
     }
 
-    public Object getModReasonBy() {
+    public String getModReasonBy() {
         return modReasonBy;
     }
 
-    public void setModReasonBy(Object modReasonBy) {
+    public void setModReasonBy(String modReasonBy) {
         this.modReasonBy = modReasonBy;
     }
 
-    public Object getRemovalReason() {
+    public String getRemovalReason() {
         return removalReason;
     }
 
-    public void setRemovalReason(Object removalReason) {
+    public void setRemovalReason(String removalReason) {
         this.removalReason = removalReason;
     }
 
@@ -956,14 +862,6 @@ public class ChildData {
         this.linkFlairBackgroundColor = linkFlairBackgroundColor;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public Boolean getRobotIndexable() {
         return isRobotIndexable;
     }
@@ -972,11 +870,11 @@ public class ChildData {
         isRobotIndexable = robotIndexable;
     }
 
-    public Object getReportReasons() {
+    public String getReportReasons() {
         return reportReasons;
     }
 
-    public void setReportReasons(Object reportReasons) {
+    public void setReportReasons(String reportReasons) {
         this.reportReasons = reportReasons;
     }
 
@@ -988,11 +886,11 @@ public class ChildData {
         this.author = author;
     }
 
-    public Object getDiscussionType() {
+    public String getDiscussionType() {
         return discussionType;
     }
 
-    public void setDiscussionType(Object discussionType) {
+    public void setDiscussionType(String discussionType) {
         this.discussionType = discussionType;
     }
 
@@ -1028,13 +926,6 @@ public class ChildData {
         this.contestMode = contestMode;
     }
 
-    public List<Object> getModReports() {
-        return modReports;
-    }
-
-    public void setModReports(List<Object> modReports) {
-        this.modReports = modReports;
-    }
 
     public Boolean getAuthorPatreonFlair() {
         return authorPatreonFlair;
@@ -1044,11 +935,11 @@ public class ChildData {
         this.authorPatreonFlair = authorPatreonFlair;
     }
 
-    public Object getAuthorFlairTextColor() {
+    public String getAuthorFlairTextColor() {
         return authorFlairTextColor;
     }
 
-    public void setAuthorFlairTextColor(Object authorFlairTextColor) {
+    public void setAuthorFlairTextColor(String authorFlairTextColor) {
         this.authorFlairTextColor = authorFlairTextColor;
     }
 
@@ -1108,14 +999,6 @@ public class ChildData {
         this.numCrossposts = numCrossposts;
     }
 
-    public Object getMedia() {
-        return media;
-    }
-
-    public void setMedia(Object media) {
-        this.media = media;
-    }
-
     public Boolean getVideo() {
         return isVideo;
     }
@@ -1132,11 +1015,11 @@ public class ChildData {
         this.postHint = postHint;
     }
 
-    public Preview getPreview() {
-        return preview;
+    public long getAutoID() {
+        return autoID;
     }
 
-    public void setPreview(Preview preview) {
-        this.preview = preview;
+    public void setAutoID(long autoID) {
+        this.autoID = autoID;
     }
 }

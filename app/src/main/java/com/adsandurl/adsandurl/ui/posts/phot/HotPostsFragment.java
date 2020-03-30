@@ -19,8 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.adsandurl.adsandurl.R;
 import com.adsandurl.adsandurl.di.ManagerComponent;
-import com.adsandurl.adsandurl.model.Child;
-import com.adsandurl.adsandurl.ui.adapter.PostsAdapter;
+import com.adsandurl.adsandurl.model.HotChild;
+import com.adsandurl.adsandurl.ui.adapter.HotPostsAdapter;
 import com.adsandurl.adsandurl.ui.base.BaseViewModel;
 import com.adsandurl.adsandurl.ui.base.BaseViewModelFragment;
 
@@ -32,7 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class HotPostsPostFragment extends BaseViewModelFragment<HotPostsView> implements HotPostsView {
+public class HotPostsFragment extends BaseViewModelFragment<HotPostsView> implements HotPostsView {
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
@@ -45,13 +45,13 @@ public class HotPostsPostFragment extends BaseViewModelFragment<HotPostsView> im
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
-    private PostsAdapter postsAdapter;
-    private ArrayList<Child> arrayList = new ArrayList<>();
+    private HotPostsAdapter hotPostsAdapter;
+    private ArrayList<HotChild> hostPostList = new ArrayList<>();
 
     private Unbinder unbinder;
 
-    public static HotPostsPostFragment newInstance() {
-        return new HotPostsPostFragment();
+    public static HotPostsFragment newInstance() {
+        return new HotPostsFragment();
     }
 
     @Nullable
@@ -81,16 +81,19 @@ public class HotPostsPostFragment extends BaseViewModelFragment<HotPostsView> im
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() != 0) {
+                    hostPostList.clear();
                     mViewSwitcher.setDisplayedChild(1);
-                    arrayList.addAll(viewModel.getHotPost().getChildren());
+                    String search = "%"+s.toString()+"%";
+                    hostPostList.addAll(viewModel.getHotPost(search));
+                    hotPostsAdapter.notifyDataSetChanged();
                 }
             }
         });
     }
 
     private void initRecyclerView() {
-        postsAdapter = new PostsAdapter(getContext(), arrayList);
-        mRecyclerView.setAdapter(postsAdapter);
+        hotPostsAdapter = new HotPostsAdapter(getContext(), hostPostList);
+        mRecyclerView.setAdapter(hotPostsAdapter);
     }
 
     @Override

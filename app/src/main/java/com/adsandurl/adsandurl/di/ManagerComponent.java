@@ -2,7 +2,7 @@ package com.adsandurl.adsandurl.di;
 
 import com.adsandurl.adsandurl.AppController;
 import com.adsandurl.adsandurl.ui.posts.PostsActivity;
-import com.adsandurl.adsandurl.ui.posts.phot.HotPostsPostFragment;
+import com.adsandurl.adsandurl.ui.posts.phot.HotPostsFragment;
 import com.adsandurl.adsandurl.ui.posts.pnew.NewPostsFragment;
 
 import javax.inject.Singleton;
@@ -17,7 +17,7 @@ public interface ManagerComponent {
 
     void inject(PostsActivity postsActivity);
 
-    void inject(HotPostsPostFragment hotPostFragment);
+    void inject(HotPostsFragment hotPostFragment);
 
     void inject(NewPostsFragment newPostFragment);
 }

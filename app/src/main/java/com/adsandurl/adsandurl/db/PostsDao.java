@@ -4,21 +4,23 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.adsandurl.adsandurl.model.Data;
-import com.adsandurl.adsandurl.model.NewPosts;
+import com.adsandurl.adsandurl.model.HotChild;
+import com.adsandurl.adsandurl.model.NewChild;
+
+import java.util.List;
 
 @Dao
 public interface PostsDao {
 
     @Insert
-    void insertHotPosts(Data data);
+    void insertHotPosts(List<HotChild> hotChild);
 
     @Insert
-    void insertNewPosts(NewPosts newPosts);
+    void insertNewPosts(List<NewChild> newPosts);
 
-    @Query("SELECT * FROM hot_posts")
-    Data getHotPostsData();
+    @Query("SELECT * FROM hot_posts where title LIKE :query")
+    List<HotChild> getHotPostsData(String query);
 
-    @Query("SELECT * FROM new_posts")
-    NewPosts getNewPostsData();
+    @Query("SELECT * FROM new_posts where title LIKE :query")
+    List<NewChild> getNewPostsData(String query);
 }

@@ -1,9 +1,10 @@
 package com.adsandurl.adsandurl.ui.posts.pnew;
 
 import com.adsandurl.adsandurl.db.PostDatabase;
-import com.adsandurl.adsandurl.model.NewPosts;
-import com.adsandurl.adsandurl.repository.PostsRepository;
+import com.adsandurl.adsandurl.model.NewChild;
 import com.adsandurl.adsandurl.ui.base.BaseViewModel;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -16,7 +17,7 @@ public class NewPostViewModel extends BaseViewModel<NewPostsView> {
         this.postDatabase = postDatabase;
     }
 
-    public NewPosts getNewPost() {
-        return postDatabase.getPostDao().getNewPostsData();
+    public List<NewChild> getNewPost(String query) {
+        return postDatabase.getPostDao().getNewPostsData(query);
     }
 }

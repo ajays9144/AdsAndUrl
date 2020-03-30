@@ -1,19 +1,11 @@
 package com.adsandurl.adsandurl.model;
 
-
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class NewPosts implements Serializable {
-    @PrimaryKey(autoGenerate = true)
-    private long id;
+public class NewData {
     @SerializedName("modhash")
     @Expose
     private String modhash;
@@ -22,8 +14,7 @@ public class NewPosts implements Serializable {
     private Integer dist;
     @SerializedName("children")
     @Expose
-    @TypeConverters(ChildTypeConverter.class)
-    private List<Child> children = null;
+    private List<NewChild> children = null;
     @SerializedName("after")
     @Expose
     private String after;
@@ -47,11 +38,11 @@ public class NewPosts implements Serializable {
         this.dist = dist;
     }
 
-    public List<Child> getChildren() {
+    public List<NewChild> getChildren() {
         return children;
     }
 
-    public void setChildren(List<Child> children) {
+    public void setChildren(List<NewChild> children) {
         this.children = children;
     }
 
@@ -69,13 +60,5 @@ public class NewPosts implements Serializable {
 
     public void setBefore(String before) {
         this.before = before;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 }

@@ -1,8 +1,10 @@
 package com.adsandurl.adsandurl.ui.posts.phot;
 
 import com.adsandurl.adsandurl.db.PostDatabase;
-import com.adsandurl.adsandurl.model.Data;
+import com.adsandurl.adsandurl.model.HotChild;
 import com.adsandurl.adsandurl.ui.base.BaseViewModel;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -15,7 +17,7 @@ public class HotPostViewModel extends BaseViewModel<HotPostsView> {
         this.postDatabase = postDatabase;
     }
 
-    public Data getHotPost() {
-        return postDatabase.getPostDao().getHotPostsData();
+    public List<HotChild> getHotPost(String query) {
+        return postDatabase.getPostDao().getHotPostsData(query);
     }
 }

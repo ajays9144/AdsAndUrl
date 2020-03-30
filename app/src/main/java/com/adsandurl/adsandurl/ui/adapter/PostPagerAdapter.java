@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.adsandurl.adsandurl.ui.posts.phot.HotPostsPostFragment;
+import com.adsandurl.adsandurl.ui.posts.phot.HotPostsFragment;
 import com.adsandurl.adsandurl.ui.posts.pnew.NewPostsFragment;
 
 public class PostPagerAdapter extends FragmentPagerAdapter {
@@ -28,7 +28,7 @@ public class PostPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return HotPostsPostFragment.newInstance();
+                return HotPostsFragment.newInstance();
             case 1:
                 return NewPostsFragment.newInstance();
         }

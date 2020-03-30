@@ -3,8 +3,8 @@ package com.adsandurl.adsandurl.ui.posts;
 import com.adsandurl.adsandurl.db.PostDatabase;
 import com.adsandurl.adsandurl.manager.PostsManager;
 import com.adsandurl.adsandurl.model.BaseResponse;
-import com.adsandurl.adsandurl.model.Data;
-import com.adsandurl.adsandurl.model.NewPosts;
+import com.adsandurl.adsandurl.model.HotData;
+import com.adsandurl.adsandurl.model.NewData;
 import com.adsandurl.adsandurl.repository.PostsRepository;
 import com.adsandurl.adsandurl.ui.base.BaseViewModel;
 
@@ -40,11 +40,11 @@ public class PostsViewModel extends BaseViewModel<PostsContract.View> implements
     @Override
     public void getHotPosts() {
         getCompositeDisposable().add(postsRepository.getHotData().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<BaseResponse<Data>>() {
+                .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<BaseResponse<HotData>>() {
                     @Override
-                    public void onNext(BaseResponse<Data> dataBaseResponse) {
+                    public void onNext(BaseResponse<HotData> dataBaseResponse) {
                         if (getView() != null) {
-                            postDatabase.getPostDao().insertHotPosts(dataBaseResponse.getData());
+                            postDatabase.getPostDao().insertHotPosts(dataBaseResponse.getData().getChildren());
                         }
                     }
 
@@ -73,11 +73,11 @@ public class PostsViewModel extends BaseViewModel<PostsContract.View> implements
     @Override
     public void getNewPosts() {
         getCompositeDisposable().add(postsRepository.getNewData().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<BaseResponse<NewPosts>>() {
+                .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DisposableObserver<BaseResponse<NewData>>() {
                     @Override
-                    public void onNext(BaseResponse<NewPosts> dataBaseResponse) {
+                    public void onNext(BaseResponse<NewData> dataBaseResponse) {
                         if (getView() != null) {
-                            postDatabase.getPostDao().insertNewPosts(dataBaseResponse.getData());
+                            postDatabase.getPostDao().insertNewPosts(dataBaseResponse.getData().getChildren());
                         }
                     }
 

@@ -19,8 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.adsandurl.adsandurl.R;
 import com.adsandurl.adsandurl.di.ManagerComponent;
-import com.adsandurl.adsandurl.model.Child;
-import com.adsandurl.adsandurl.ui.adapter.PostsAdapter;
+import com.adsandurl.adsandurl.model.NewChild;
+import com.adsandurl.adsandurl.ui.adapter.NewPostsAdapter;
 import com.adsandurl.adsandurl.ui.base.BaseViewModel;
 import com.adsandurl.adsandurl.ui.base.BaseViewModelFragment;
 
@@ -45,8 +45,8 @@ public class NewPostsFragment extends BaseViewModelFragment<NewPostsView> implem
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
-    private PostsAdapter postsAdapter;
-    private ArrayList<Child> arrayList = new ArrayList<>();
+    private NewPostsAdapter newPostsAdapter;
+    private ArrayList<NewChild> newPostsList = new ArrayList<>();
 
     private Unbinder unbinder;
 
@@ -81,8 +81,11 @@ public class NewPostsFragment extends BaseViewModelFragment<NewPostsView> implem
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() != 0) {
+                    newPostsList.clear();
                     mViewSwitcher.setDisplayedChild(1);
-                    arrayList.addAll(viewModel.getNewPost().getChildren());
+                    String search = "%" + s.toString() + "%";
+                    newPostsList.addAll(viewModel.getNewPost(search));
+                    newPostsAdapter.notifyDataSetChanged();
                 }
             }
         });
@@ -98,8 +101,8 @@ public class NewPostsFragment extends BaseViewModelFragment<NewPostsView> implem
     }
 
     private void initRecyclerView() {
-        postsAdapter = new PostsAdapter(getContext(), arrayList);
-        mRecyclerView.setAdapter(postsAdapter);
+        newPostsAdapter = new NewPostsAdapter(getContext(), newPostsList);
+        mRecyclerView.setAdapter(newPostsAdapter);
     }
 
     @Override
